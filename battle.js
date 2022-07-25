@@ -16,6 +16,12 @@ const touchPoints = {
         [1610, 990]
     ]
 }
+const SendStatus = {
+    wait: 0,
+    run: 1,
+    term: 2,
+    stop: 3
+}
 
 async function sendCat(a, b){
     if (a<=0||a>=2||b<=0||b>=6){
@@ -25,16 +31,26 @@ async function sendCat(a, b){
     await acc.click(touchPoints[a][b][0], touchPoints[a][b][1])
 }
 
-class Battle {
-    constructor(flow, id){
+class Send {
+    constructor(flow){
         this.flow = flow
-        this.id = id
+        this.status = SendStatus.wait
     }
-    async run(){
-        await lang.delay(this.flow["delay"])
-        for (this.id==globalThis.status){
+    async exec(){
+        lang.delay(this.flow["end"]).then(this.term)
+        await lang.delay(this.flow["begin"])
+        this.status = SendStatus.run
+        for (;this.status!=SendStatus.term;){
             await sendCat(this.flow["a"], this.flow["b"])
             await lang.delay(this.flow["interval"])
         }
+        this.status = SendStatus.stop
     }
+    term(){
+        this.status = SendStatus.term
+    }
+}
+
+class Battle{
+
 }
