@@ -6,13 +6,14 @@ const img = require("image")
 const md = require("media_projection");
 const lang = require('lang');
 const app = require("app")
-const us = require("ui_selector")
+const us = require("ui_selector");
+const { testBattle } = require('./battle');
 const dx = 220
 const dy = 160
 const x0 = 650
 const y0 = 760
-const conn = await img.readImage("screenshots/level-connecting-words.png")
-const disconn = await img.readImage("screenshots/level-timeout-words.png")
+// const conn = await img.readImage("screenshots/level-connecting-words.png")
+// const disconn = await img.readImage("screenshots/level-timeout-words.png")
 
 globalThis.status = 0
 const touchPoints = {
@@ -99,7 +100,7 @@ async function exp3(){
         await sendCat(2,4,400)
         await sendCat(2,5,400)
     }
-    await end
+    await end()
 }
 
 async function changeTime(forward=true){
@@ -155,5 +156,6 @@ async function test(){
 }
 
 // main();
-test();
+// test();
+testBattle()
 
