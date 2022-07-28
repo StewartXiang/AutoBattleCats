@@ -36,16 +36,20 @@ const SendList = {
 }
 
 
-async function sendCatB(a, b){
-    console.log("click x on " + touchPoints[a][b][0] + "y on " + touchPoints[a][b][1] )
+async function sendCatM(a, b){
+    if (a<=0||a>=3||b<=0||b>=6){
+        console.log("..")
+        return
+    }
+    console.log("click x on " + touchPoints[a][b-1][0] + "y on " + touchPoints[a][b-1][1] )
 }
 
 async function sendCat(a, b){
-    if (a<=0||a>=2||b<=0||b>=6){
+    if (a<=0||a>=3||b<=0||b>=6){
         await acc.click(100, 1000)
         return
     }
-    await acc.click(touchPoints[a][b][0], touchPoints[a][b][1])
+    await acc.click(touchPoints[a][b-1][0], touchPoints[a][b-1][1])
 }
 
 class Send {
@@ -54,16 +58,24 @@ class Send {
         this.status = SendStatus.wait
     }
     async exec(){
-        lang.delay(this.flow[SendList.end]).then(this.term)
+        console.log(this.flow[SendList.begin])
+        this.term(this.flow[SendList.end])
         await lang.delay(this.flow[SendList.begin])
+
         this.status = SendStatus.run
         for (;this.status!=SendStatus.term;){
+            console.log(this.flow[SendList.a], this.flow[SendList.b])
             await sendCat(this.flow[SendList.a], this.flow[SendList.b])
             await lang.delay(this.flow[SendList.interval])
         }
+
         this.status = SendStatus.stop
     }
-    term(){
+    async term(t=0){
+        if (t>0){
+            await lang.delay(t)
+        }
+        console.log("term", this.flow[SendList.a], this.flow[SendList.b])
         this.status = SendStatus.term
     }
 }
@@ -90,7 +102,10 @@ async function testBattle(){
     levels = JSON.parse(fs.readFileSync("levels.json"))
     console.log(levels)
     b = new Battle(levels)
-    await lang.delay(5000)
+    await lang.delay(10000)
+    // console.log("term all")
+    // b.termAll()
+    await lang.delay(10000)
 }
 
 exports.testBattle = testBattle

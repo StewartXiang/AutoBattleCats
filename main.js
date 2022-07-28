@@ -12,8 +12,6 @@ const dx = 220
 const dy = 160
 const x0 = 650
 const y0 = 760
-// const conn = await img.readImage("screenshots/level-connecting-words.png")
-// const disconn = await img.readImage("screenshots/level-timeout-words.png")
 
 globalThis.status = 0
 const touchPoints = {
@@ -29,7 +27,7 @@ let status = 0
 
 async function begin(){
     acc.click(2050, 750)
-    await lang.delay(8000)
+    await lang.delay(6000)
 } 
 
 async function end(){
