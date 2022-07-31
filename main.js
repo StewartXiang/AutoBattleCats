@@ -155,5 +155,15 @@ async function test(){
 
 // main();
 // test();
-testBattle()
+async function test2(){
+    await begin()
+    await testBattle()
+}
 
+async function test3(){
+    for(;;){
+        
+    }
+}
+
+test2()
