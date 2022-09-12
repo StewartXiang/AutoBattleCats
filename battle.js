@@ -104,13 +104,14 @@ async function testBattle(){
     //b = new Battle(levels["daily_exp"])
     //b = new Battle(levels["summer_act"])
     //b = new Battle(levels["black_pepper"])
-    b = new Battle(levels["august_lucky_g"])
+    //b = new Battle(levels["august_lucky_g"])
+    b = new Battle(levels["big_iron_hippo"])
     
     
     await lang.delay(10000)
     // console.log("term all")
     // b.termAll()
-    await lang.delay(100000)
+    await lang.delay(35000)
 }
 
 exports.testBattle = testBattle

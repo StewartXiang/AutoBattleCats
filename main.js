@@ -88,15 +88,20 @@ async function changeTime(forward=true){
     await lang.delay(500);
     await acc.clickText("日期和時間");
     await lang.delay(500);
-    await acc.clickText("設定日期");
-    await lang.delay(500);
     if (forward){
+        await acc.clickText("設定日期");
+        await lang.delay(500);
+    
         await acc.swipe(850, 1700, 850, 1800, 500);
+        await lang.delay(500);
+        await acc.click(800, 2200);
     } else {
-        await acc.swipe(850, 1800, 850, 1700, 500);
+        //await acc.swipe(850, 1800, 850, 1700, 500);
+        await acc.clickText("使用網路提供的時間")
+        await lang.delay(500);
+        await acc.clickText("使用網路提供的時間")
     }
-    await lang.delay(500);
-    await acc.click(800, 2200);
+    
     await lang.delay(500);
 }
 
@@ -115,8 +120,8 @@ async function test(){
     await changeTime();
     await changeTime(false);
     // await exp3()
-    acc.click(1385, 772);
-    acc.click(1385, 1000);
+    // acc.click(1385, 772);
+    // acc.click(1385, 1000);
 }
 
 main();
