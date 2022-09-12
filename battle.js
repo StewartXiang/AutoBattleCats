@@ -84,8 +84,6 @@ class Battle{
     constructor(level){
         this.level = level
         this.sends = []
-    }
-    exec(){
         for(let i in level["send"]){
             console.log(Date.now())
             let s = new Send(level["send"][i])
@@ -101,16 +99,18 @@ class Battle{
 }
 
 async function testBattle(){
-    levels = JSON.parse(fs.readFileSync("levels.json"))
+    levels = JSON.parse(fs.readFileSync("battles.json"))
     console.log(levels)
-    b = new Battle(levels["daily_exp"])
+    //b = new Battle(levels["daily_exp"])
     //b = new Battle(levels["summer_act"])
+    //b = new Battle(levels["black_pepper"])
+    b = new Battle(levels["august_lucky_g"])
+    
     
     await lang.delay(10000)
     // console.log("term all")
     // b.termAll()
-    await lang.delay(10000)
+    await lang.delay(100000)
 }
 
 exports.testBattle = testBattle
-exports.Battle = Battle

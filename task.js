@@ -1,3 +1,4 @@
+"nodejs";
 const acc = require("accessibility")
 const img = require("image")
 const TaskStatus = {
@@ -21,18 +22,7 @@ class Task{
         this.battle = battleId
     }
     exec(){
-        switch (this.status){
-            case TaskStatus.prepare:
-                break
-            case TaskStatus.restore:
-                break
-            case TaskStatus.battle:
-                break
-            case TaskStatus.end:
-                break
-            case TaskStatus.term:
-                break
-        }
+
     }
     term(){
         this.status = TaskStatus.term
@@ -52,6 +42,7 @@ class BasicStep {
 class StepPrepare extends BasicStep{
     constructor(task){
         super(task)
+        
 
     }
     exec(){
@@ -60,19 +51,35 @@ class StepPrepare extends BasicStep{
 }
 
 class StepRestore extends BasicStep{
+    constructor(task){
+        super(task)
+
+    }
     exec(){
     }
 }
 
 class StepBattle extends BasicStep{
+    constructor(task){
+        super(task)
+
+    }
 
 }
 
 class StepEnd extends BasicStep{
+    constructor(task){
+        super(task)
+
+    }
 
 }
 
 class StepTerm extends BasicStep{
+    constructor(task){
+        super(task)
+
+    }
 
 }
 
